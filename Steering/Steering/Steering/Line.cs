@@ -16,7 +16,7 @@ namespace Steering
     
     class Line
     {
-        private static VertexPositionColor[] pointList = new VertexPositionColor[400];
+        private static VertexPositionColor[] pointList = new VertexPositionColor[2000];
         private static BasicEffect basicEffect = new BasicEffect(XNAGame.Instance().GraphicsDevice);
         static int currentLine = 0;
 

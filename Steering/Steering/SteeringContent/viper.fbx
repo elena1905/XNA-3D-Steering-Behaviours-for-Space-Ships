@@ -12,8 +12,8 @@ FBXHeaderExtension:  {
 		Month: 02
 		Day: 21
 		Hour: 13
-		Minute: 18
-		Second: 17
+		Minute: 20
+		Second: 00
 		Millisecond: 0
 	}
 	Creator: "FBX SDK/FBX Plugins build 20070228"
@@ -21,7 +21,7 @@ FBXHeaderExtension:  {
 		FlagPLE: 0
 	}
 }
-CreationTime: "2013-02-21 13:18:17:000"
+CreationTime: "2013-02-21 13:20:00:000"
 Creator: "Blender version 2.66 (sub 0)"
 
 ; Object definitions
@@ -29,7 +29,7 @@ Creator: "Blender version 2.66 (sub 0)"
 
 Definitions:  {
 	Version: 100
-	Count: 20
+	Count: 17
 	ObjectType: "Model" {
 		Count: 9
 	}
@@ -37,7 +37,7 @@ Definitions:  {
 		Count: 1
 	}
 	ObjectType: "Material" {
-		Count: 10
+		Count: 7
 	}
 	ObjectType: "Pose" {
 		Count: 1
@@ -136,14 +136,14 @@ Objects:  {
 		CameraName: 100
 		CameraIndexName:
 	}
-	Model: "Model::shuttle", "Mesh" {
+	Model: "Model::viper_None_001", "Mesh" {
 		Version: 232
 		Properties60:  {
 			Property: "QuaternionInterpolate", "bool", "",0
 			Property: "Visibility", "Visibility", "A+",1
-			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,0.000000000000000
+			Property: "Lcl Translation", "Lcl Translation", "A+",0.000000000000000,0.000000000000000,-0.587811768054962
 			Property: "Lcl Rotation", "Lcl Rotation", "A+",0.000002504478065,-0.000000000000000,0.000000000000000
-			Property: "Lcl Scaling", "Lcl Scaling", "A+",0.050000000745058,0.050000000745058,0.050000000745058
+			Property: "Lcl Scaling", "Lcl Scaling", "A+",0.025000000372529,0.025000000372529,0.025000000372529
 			Property: "RotationOffset", "Vector3D", "",0,0,0
 			Property: "RotationPivot", "Vector3D", "",0,0,0
 			Property: "ScalingOffset", "Vector3D", "",0,0,0
@@ -215,11 +215,11 @@ Objects:  {
 		MultiTake: 1
 		Shading: Y
 		Culling: "CullingOff"
-		Vertices: 0.000000,-17.000000,23.000000,0.000000,-9.000000,35.000000,-17.000000,0.000000,23.000000,-20.000000,-20.000000,-27.000000,20.000000,-20.000000,-27.000000,-20.000000,20.000000,-27.000000,0.000000,18.000000,23.000000
-		,20.000000,20.000000,-27.000000,18.000000,0.000000,23.000000,0.000000,3.000000,-27.010000,5.000000,0.000000,-27.010000,0.000000,-2.000000,-27.010000,-5.000000,0.000000,-27.010000,4.000000,11.000000,25.000000
-		,3.000000,-1.000000,31.000000,11.000000,4.000000,25.000000,-10.000000,4.000000,25.000000,-3.000000,-1.000000,31.000000,-3.000000,11.000000,25.000000
-		PolygonVertexIndex: 0,1,-3,0,3,-5,3,0,-3,2,5,-4,6,5,-3,6,7,-6,8,7,-7,8,4,-8,0,4,-9,4,3,-6,4,5,-8,2,1,-7,6,1,-9
-		,1,0,-9,9,10,-12,9,11,-13,13,14,-16,16,17,-19
+		Vertices: 24.000000,16.000000,-24.000000,-24.000000,16.000000,-24.000000,0.000000,16.000000,24.000000,-48.000000,0.000000,-24.000000,0.000000,0.000000,72.000000,48.000000,0.000000,-24.000000,0.000000,-16.000000,24.000000
+		,-24.000000,-16.000000,-24.000000,24.000000,-16.000000,-24.000000,-8.000000,8.557765,-24.162573,-8.000000,-7.442235,-24.162573,-32.000000,0.557765,-24.162573,32.000000,-0.000000,-24.204636,8.000000,-8.000000,-24.204636
+		,8.000000,8.000000,-24.204636
+		PolygonVertexIndex: 0,1,-3,1,3,-5,1,4,-3,5,0,-3,5,2,-5,6,4,-4,6,3,-8,4,6,-9,4,8,-6,6,7,-9,1,0,-4,3,0,-6,3,5,-9
+		,3,8,-8,9,10,-12,12,13,-15
 		Edges: 
 		GeometryVersion: 124
 		LayerElementNormal: 0 {
@@ -227,30 +227,28 @@ Objects:  {
 			Name: ""
 			MappingInformationType: "ByVertice"
 			ReferenceInformationType: "Direct"
-			Normals: -0.010589922778308,-0.909268498420715,0.416028320789337,-0.011444441042840,-0.344401389360428,0.938749372959137
-			 ,-0.841242730617523,0.016937773674726,0.540330231189728,-0.603289902210236,-0.603289902210236,-0.521561324596405
-			 ,0.598193287849426,-0.604998946189880,-0.525467693805695,-0.604998946189880,0.598193287849426,-0.525467693805695
-			 ,-0.009216589853168,0.812921524047852,0.582262635231018,0.599871814250946,0.599871814250946,-0.529374063014984
-			 ,0.840021967887878,0.015320291742682,0.542283415794373,0.000000000000000,0.000000000000000,-1.000000000000000
-			 ,0.000000000000000,0.000000000000000,-0.999969482421875,0.000000000000000,0.000000000000000,-1.000000000000000
-			 ,0.000000000000000,0.000000000000000,-0.999969482421875,0.386486411094666,0.386486411094666,0.837397396564484
-			 ,0.386486411094666,0.386486411094666,0.837397396564484,0.386486411094666,0.386486411094666,0.837397396564484
-			 ,-0.408246099948883,0.408246099948883,0.816492199897766,-0.408246099948883,0.408246099948883,0.816492199897766
-			 ,-0.408246099948883,0.408246099948883,0.816492199897766
+			Normals: 0.296792507171631,0.760155022144318,-0.577959537506104,-0.296792507171631,0.760155022144318,-0.577959537506104
+			 ,0.000000000000000,0.964842677116394,0.262794882059097,-0.920377194881439,0.000000000000000,-0.390972614288330
+			 ,0.000000000000000,0.000000000000000,1.000000000000000,0.920377194881439,0.000000000000000,-0.390972614288330
+			 ,0.000000000000000,-0.964842677116394,0.262794882059097,-0.296792507171631,-0.760155022144318,-0.577959537506104
+			 ,0.296792507171631,-0.760155022144318,-0.577959537506104,0.000000000000000,0.000000000000000,-1.000000000000000
+			 ,0.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,0.000000000000000,-1.000000000000000
+			 ,0.000000000000000,0.000000000000000,-1.000000000000000,0.000000000000000,0.000000000000000,-1.000000000000000
+			 ,0.000000000000000,0.000000000000000,-1.000000000000000
 		}
 		LayerElementSmoothing: 0 {
 			Version: 102
 			Name: ""
 			MappingInformationType: "ByPolygon"
 			ReferenceInformationType: "Direct"
-			Smoothing: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+			Smoothing: 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 		}
 		LayerElementMaterial: 0 {
 			Version: 101
 			Name: ""
 			MappingInformationType: "ByPolygon"
 			ReferenceInformationType: "IndexToDirect"
-			Materials: 7,7,4,5,6,7,6,5,4,5,5,7,7,7,8,8,5,5
+			Materials: 4,3,3,3,3,2,2,2,2,1,0,0,0,0,5,5
 		}
 		Layer: 0 {
 			Version: 100
@@ -1346,66 +1344,6 @@ Objects:  {
 		AudioColor: 0,1,0
 		CameraOrthoZoom: 1
 	}
-	Material: "Material::Material", "" {
-		Version: 102
-		ShadingModel: "lambert"
-		MultiLayer: 0
-		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Lambert"
-			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "EmissiveFactor", "double", "",0.0000
-			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
-			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "DiffuseFactor", "double", "",0.8000
-			Property: "Bump", "Vector3D", "",0,0,0
-			Property: "TransparentColor", "ColorRGB", "",1,1,1
-			Property: "TransparencyFactor", "double", "",0.0000
-			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
-			Property: "ShininessExponent", "double", "",80.0
-			Property: "ReflectionColor", "ColorRGB", "",0,0,0
-			Property: "ReflectionFactor", "double", "",1
-			Property: "Emissive", "ColorRGB", "",0,0,0
-			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
-			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
-			Property: "Shininess", "double", "",9.6
-			Property: "Opacity", "double", "",1.0
-			Property: "Reflectivity", "double", "",0
-		}
-	}
-	Material: "Material::Material_001", "" {
-		Version: 102
-		ShadingModel: "lambert"
-		MultiLayer: 0
-		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Lambert"
-			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "EmissiveFactor", "double", "",0.0000
-			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
-			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
-			Property: "DiffuseFactor", "double", "",0.8000
-			Property: "Bump", "Vector3D", "",0,0,0
-			Property: "TransparentColor", "ColorRGB", "",1,1,1
-			Property: "TransparencyFactor", "double", "",0.0000
-			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
-			Property: "ShininessExponent", "double", "",80.0
-			Property: "ReflectionColor", "ColorRGB", "",0,0,0
-			Property: "ReflectionFactor", "double", "",1
-			Property: "Emissive", "ColorRGB", "",0,0,0
-			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
-			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
-			Property: "Shininess", "double", "",9.6
-			Property: "Opacity", "double", "",1.0
-			Property: "Reflectivity", "double", "",0
-		}
-	}
 	Material: "Material::Material_002", "" {
 		Version: 102
 		ShadingModel: "lambert"
@@ -1413,11 +1351,11 @@ Objects:  {
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "EmissiveColor", "ColorRGB", "",0.1400,0.1400,0.1400
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "DiffuseColor", "ColorRGB", "",0.1400,0.1400,0.1400
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -1429,7 +1367,7 @@ Objects:  {
 			Property: "ReflectionFactor", "double", "",1
 			Property: "Emissive", "ColorRGB", "",0,0,0
 			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
+			Property: "Diffuse", "ColorRGB", "",0.1,0.1,0.1
 			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
 			Property: "Shininess", "double", "",9.6
 			Property: "Opacity", "double", "",1.0
@@ -1443,11 +1381,11 @@ Objects:  {
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,0.8000
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.8000,0.8000,0.8000
+			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,0.8000
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -1459,7 +1397,7 @@ Objects:  {
 			Property: "ReflectionFactor", "double", "",1
 			Property: "Emissive", "ColorRGB", "",0,0,0
 			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.8,0.8,0.8
+			Property: "Diffuse", "ColorRGB", "",0.0,0.0,0.8
 			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
 			Property: "Shininess", "double", "",9.6
 			Property: "Opacity", "double", "",1.0
@@ -1467,6 +1405,36 @@ Objects:  {
 		}
 	}
 	Material: "Material::Material_004", "" {
+		Version: 102
+		ShadingModel: "lambert"
+		MultiLayer: 0
+		Properties60:  {
+			Property: "ShadingModel", "KString", "", "Lambert"
+			Property: "MultiLayer", "bool", "",0
+			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,0.6000
+			Property: "EmissiveFactor", "double", "",0.0000
+			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
+			Property: "AmbientFactor", "double", "",1.0000
+			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,0.6000
+			Property: "DiffuseFactor", "double", "",0.8000
+			Property: "Bump", "Vector3D", "",0,0,0
+			Property: "TransparentColor", "ColorRGB", "",1,1,1
+			Property: "TransparencyFactor", "double", "",0.0000
+			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
+			Property: "SpecularFactor", "double", "",0.2500
+			Property: "ShininessExponent", "double", "",80.0
+			Property: "ReflectionColor", "ColorRGB", "",0,0,0
+			Property: "ReflectionFactor", "double", "",1
+			Property: "Emissive", "ColorRGB", "",0,0,0
+			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
+			Property: "Diffuse", "ColorRGB", "",0.0,0.0,0.6
+			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
+			Property: "Shininess", "double", "",9.6
+			Property: "Opacity", "double", "",1.0
+			Property: "Reflectivity", "double", "",0
+		}
+	}
+	Material: "Material::Material_005", "" {
 		Version: 102
 		ShadingModel: "lambert"
 		MultiLayer: 0
@@ -1503,11 +1471,11 @@ Objects:  {
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.1400,0.1400,0.1400
+			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,0.2000
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.1400,0.1400,0.1400
+			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,0.2000
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -1519,67 +1487,7 @@ Objects:  {
 			Property: "ReflectionFactor", "double", "",1
 			Property: "Emissive", "ColorRGB", "",0,0,0
 			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.1,0.1,0.1
-			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
-			Property: "Shininess", "double", "",9.6
-			Property: "Opacity", "double", "",1.0
-			Property: "Reflectivity", "double", "",0
-		}
-	}
-	Material: "Material::Material_007", "" {
-		Version: 102
-		ShadingModel: "lambert"
-		MultiLayer: 0
-		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Lambert"
-			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,0.8000
-			Property: "EmissiveFactor", "double", "",0.0000
-			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
-			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,0.8000
-			Property: "DiffuseFactor", "double", "",0.8000
-			Property: "Bump", "Vector3D", "",0,0,0
-			Property: "TransparentColor", "ColorRGB", "",1,1,1
-			Property: "TransparencyFactor", "double", "",0.0000
-			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
-			Property: "ShininessExponent", "double", "",80.0
-			Property: "ReflectionColor", "ColorRGB", "",0,0,0
-			Property: "ReflectionFactor", "double", "",1
-			Property: "Emissive", "ColorRGB", "",0,0,0
-			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.0,0.0,0.8
-			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
-			Property: "Shininess", "double", "",9.6
-			Property: "Opacity", "double", "",1.0
-			Property: "Reflectivity", "double", "",0
-		}
-	}
-	Material: "Material::Material_008", "" {
-		Version: 102
-		ShadingModel: "lambert"
-		MultiLayer: 0
-		Properties60:  {
-			Property: "ShadingModel", "KString", "", "Lambert"
-			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.0000,0.0000,1.0000
-			Property: "EmissiveFactor", "double", "",0.0000
-			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
-			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.0000,0.0000,1.0000
-			Property: "DiffuseFactor", "double", "",0.8000
-			Property: "Bump", "Vector3D", "",0,0,0
-			Property: "TransparentColor", "ColorRGB", "",1,1,1
-			Property: "TransparencyFactor", "double", "",0.0000
-			Property: "SpecularColor", "ColorRGB", "",1.0000,1.0000,1.0000
-			Property: "SpecularFactor", "double", "",0.2500
-			Property: "ShininessExponent", "double", "",80.0
-			Property: "ReflectionColor", "ColorRGB", "",0,0,0
-			Property: "ReflectionFactor", "double", "",1
-			Property: "Emissive", "ColorRGB", "",0,0,0
-			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.0,0.0,1.0
+			Property: "Diffuse", "ColorRGB", "",0.0,0.0,0.2
 			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
 			Property: "Shininess", "double", "",9.6
 			Property: "Opacity", "double", "",1.0
@@ -1593,11 +1501,11 @@ Objects:  {
 		Properties60:  {
 			Property: "ShadingModel", "KString", "", "Lambert"
 			Property: "MultiLayer", "bool", "",0
-			Property: "EmissiveColor", "ColorRGB", "",0.2230,1.0000,0.0000
+			Property: "EmissiveColor", "ColorRGB", "",1.0000,1.0000,0.0000
 			Property: "EmissiveFactor", "double", "",0.0000
 			Property: "AmbientColor", "ColorRGB", "",0.0000,0.0000,0.0000
 			Property: "AmbientFactor", "double", "",1.0000
-			Property: "DiffuseColor", "ColorRGB", "",0.2230,1.0000,0.0000
+			Property: "DiffuseColor", "ColorRGB", "",1.0000,1.0000,0.0000
 			Property: "DiffuseFactor", "double", "",0.8000
 			Property: "Bump", "Vector3D", "",0,0,0
 			Property: "TransparentColor", "ColorRGB", "",1,1,1
@@ -1609,7 +1517,7 @@ Objects:  {
 			Property: "ReflectionFactor", "double", "",1
 			Property: "Emissive", "ColorRGB", "",0,0,0
 			Property: "Ambient", "ColorRGB", "",0.0,0.0,0.0
-			Property: "Diffuse", "ColorRGB", "",0.2,1.0,0.0
+			Property: "Diffuse", "ColorRGB", "",1.0,1.0,0.0
 			Property: "Specular", "ColorRGB", "",1.0,1.0,1.0
 			Property: "Shininess", "double", "",9.6
 			Property: "Opacity", "double", "",1.0
@@ -1653,8 +1561,8 @@ Objects:  {
 		}
 		NbPoseNodes: 1
 		PoseNode:  {
-			Node: "Model::shuttle"
-			Matrix: 0.000000003774895,0.050000000745058,0.000000002185570,0.000000000000000,-0.050000000745058,0.000000003774895,0.000000000000000,0.000000000000000,0.000000000000000,-0.000000002185570,0.050000000745058,0.000000000000000,0.000000000000000,0.000000000000000,0.000000000000000,1.000000000000000
+			Node: "Model::viper_None_001"
+			Matrix: 0.000000001887448,0.025000000372529,0.000000001092785,0.000000000000000,-0.025000000372529,0.000000001887448,0.000000000000000,0.000000000000000,0.000000000000000,-0.000000001092785,0.025000000372529,0.000000000000000,0.000000000000000,0.000000000000000,-0.587811768054962,1.000000000000000
 		}
 	}
 	GlobalSettings:  {
@@ -1675,7 +1583,7 @@ Objects:  {
 ;------------------------------------------------------------------
 
 Relations:  {
-	Model: "Model::shuttle", "Mesh" {
+	Model: "Model::viper_None_001", "Mesh" {
 	}
 	Model: "Model::Producer Perspective", "Camera" {
 	}
@@ -1693,21 +1601,15 @@ Relations:  {
 	}
 	Model: "Model::Camera Switcher", "CameraSwitcher" {
 	}
-	Material: "Material::Material", "" {
-	}
-	Material: "Material::Material_001", "" {
-	}
 	Material: "Material::Material_002", "" {
 	}
 	Material: "Material::Material_003", "" {
 	}
 	Material: "Material::Material_004", "" {
 	}
+	Material: "Material::Material_005", "" {
+	}
 	Material: "Material::Material_006", "" {
-	}
-	Material: "Material::Material_007", "" {
-	}
-	Material: "Material::Material_008", "" {
 	}
 	Material: "Material::Thruster", "" {
 	}
@@ -1719,16 +1621,13 @@ Relations:  {
 ;------------------------------------------------------------------
 
 Connections:  {
-	Connect: "OO", "Model::shuttle", "Model::Scene"
-	Connect: "OO", "Material::Material", "Model::shuttle"
-	Connect: "OO", "Material::Material_001", "Model::shuttle"
-	Connect: "OO", "Material::Material_002", "Model::shuttle"
-	Connect: "OO", "Material::Material_003", "Model::shuttle"
-	Connect: "OO", "Material::Material_004", "Model::shuttle"
-	Connect: "OO", "Material::Material_006", "Model::shuttle"
-	Connect: "OO", "Material::Material_007", "Model::shuttle"
-	Connect: "OO", "Material::Material_008", "Model::shuttle"
-	Connect: "OO", "Material::Thruster", "Model::shuttle"
+	Connect: "OO", "Model::viper_None_001", "Model::Scene"
+	Connect: "OO", "Material::Material_002", "Model::viper_None_001"
+	Connect: "OO", "Material::Material_003", "Model::viper_None_001"
+	Connect: "OO", "Material::Material_004", "Model::viper_None_001"
+	Connect: "OO", "Material::Material_005", "Model::viper_None_001"
+	Connect: "OO", "Material::Material_006", "Model::viper_None_001"
+	Connect: "OO", "Material::Thruster", "Model::viper_None_001"
 }
 ;Takes and animation section
 ;----------------------------------------------------
@@ -1742,7 +1641,7 @@ Takes:  {
 
 		;Models animation
 		;----------------------------------------------------
-		Model: "Model::shuttle" {
+		Model: "Model::viper_None_001" {
 			Version: 1.1
 			Channel: "Transform" {
 				Channel: "T" {
@@ -1763,11 +1662,11 @@ Takes:  {
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.000000000000000
+						Default: -0.587811768054962
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1847446320,0.000000000000000,L
+							1847446320,-0.587811768054962,L
 						Color: 0,0,1
 					}
 					LayerType: 1
@@ -1801,27 +1700,27 @@ Takes:  {
 				}
 				Channel: "S" {
 					Channel: "X" {
-						Default: 0.050000000745058
+						Default: 0.025000000372529
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1847446320,0.050000000745058,L
+							1847446320,0.025000000372529,L
 						Color: 1,0,0
 					}
 					Channel: "Y" {
-						Default: 0.050000000745058
+						Default: 0.025000000372529
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1847446320,0.050000000745058,L
+							1847446320,0.025000000372529,L
 						Color: 0,1,0
 					}
 					Channel: "Z" {
-						Default: 0.050000000745058
+						Default: 0.025000000372529
 						KeyVer: 4005
 						KeyCount: 1
 						Key: 
-							1847446320,0.050000000745058,L
+							1847446320,0.025000000372529,L
 						Color: 0,0,1
 					}
 					LayerType: 3

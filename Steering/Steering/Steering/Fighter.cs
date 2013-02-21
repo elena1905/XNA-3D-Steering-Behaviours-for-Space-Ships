@@ -50,7 +50,7 @@ namespace Steering
         }
 
         SteeringBehaviours steeringBehaviours;
-        public float maxSpeed = 20.0f;
+        public float maxSpeed = 150.0f;
         bool drawAxis;
         List<Vector3> feelers = new List<Vector3>();
 
@@ -99,7 +99,7 @@ namespace Steering
             modelName = "fighter";
         }
 
-        public override void LoadContent()
+        public override void LoadContent() 
         {            
             model = XNAGame.Instance().Content.Load<Model>(modelName);
             worldTransform = Matrix.CreateWorld(pos, look, up);
@@ -176,6 +176,7 @@ namespace Steering
                     up.Normalize();
                     SteeringBehaviours.checkNaN(ref up, Vector3.Up);
                 }
+                velocity *= 0.99f;
             }
             
             if (look != basis)

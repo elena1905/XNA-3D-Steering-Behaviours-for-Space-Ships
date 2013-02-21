@@ -16,10 +16,11 @@ namespace Steering
     class Sphere:Entity
     {
         float radius;
+        public Vector3 Color = new Vector3(1, 1, 1);
 
         public Sphere(float radius)
         {
-            this.radius = radius;
+            this.radius = radius;            
         }
 
         public float Radius
@@ -43,36 +44,27 @@ namespace Steering
 
         public override void Draw(GameTime gameTime)
         {
+           
             worldTransform = Matrix.CreateScale(radius) * Matrix.CreateTranslation(pos);
 
-            RasterizerState originalState = XNAGame.Instance().GraphicsDevice.RasterizerState;
-
-            RasterizerState rasterizerState = new RasterizerState();
-            rasterizerState.FillMode = FillMode.WireFrame;
-            XNAGame.Instance().GraphicsDevice.RasterizerState = rasterizerState;
-
-            // Do your wireframe drawing here...
-
-            
-            // Draw the mesh
-            if (model != null)
+            if (ShouldDraw)
             {
-                foreach (ModelMesh mesh in model.Meshes)
+                if (model != null)
                 {
-                    foreach (BasicEffect effect in mesh.Effects)
+                    foreach (ModelMesh mesh in model.Meshes)
                     {
-                        effect.EnableDefaultLighting();
-                        effect.PreferPerPixelLighting = true;
-                        effect.World = worldTransform;                       
-                        effect.Projection = XNAGame.Instance().Camera.getProjection();
-                        effect.View = XNAGame.Instance().Camera.getView();
+                        foreach (BasicEffect effect in mesh.Effects)
+                        {
+                            effect.EnableDefaultLighting();
+                            effect.PreferPerPixelLighting = true;
+                            effect.World = worldTransform;
+                            effect.DiffuseColor = Color;
+                            effect.Projection = XNAGame.Instance().Camera.getProjection();
+                            effect.View = XNAGame.Instance().Camera.getView();
+                        }
+                        mesh.Draw();
                     }
-                    mesh.Draw();
-                }
-            }
-            if (originalState != null)
-            {
-                XNAGame.Instance().GraphicsDevice.RasterizerState = originalState;
+                }                
             }
         }
 

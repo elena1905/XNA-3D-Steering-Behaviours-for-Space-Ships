@@ -85,7 +85,7 @@ namespace Steering
             graphics.PreferMultiSampling = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = false;
+            graphics.IsFullScreen = true;
             Content.RootDirectory = "Content";
         }
         
@@ -96,17 +96,14 @@ namespace Steering
             camera = new Camera();
 
             SkySphere skySphere = new SkySphere();
-            children.Add(skySphere);
+            //children.Add(skySphere);
 
             camera.pos = new Vector3(2, 20, 50);
             int midX = GraphicsDeviceManager.DefaultBackBufferHeight / 2;
             int midY = GraphicsDeviceManager.DefaultBackBufferWidth / 2;
             Mouse.SetPosition(midX, midY);
             children.Add(camera);
-            Scenario.setUpWander();
-           
-
-            
+            Scenario.setUpEliteDemo();
             base.Initialize();
         }
 
@@ -179,7 +176,7 @@ namespace Steering
                 camera.right = camFighter.right;
             }
 
-            for (int i = 0; i < children.Count; i++)
+            for (int i = children.Count - 1; i >= 0; i--)
             {
                 children[i].Update(gameTime);
                 if (children[i].Alive == false)
@@ -198,7 +195,7 @@ namespace Steering
         protected override void Draw(GameTime gameTime)
         {
             
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.Aqua);
             spriteBatch.Begin();
 
             // Allows the game to exit
