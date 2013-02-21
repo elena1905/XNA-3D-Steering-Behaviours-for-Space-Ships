@@ -29,6 +29,7 @@ namespace Steering
             AIFighter fighter = (AIFighter)Entity;
             fighter.SteeringBehaviours.turnOffAll();
             fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.offset_pursuit);
+            fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.obstacle_avoidance);
             fighter.offset = new Vector3(0, 0, 5);
             fighter.Leader = XNAGame.Instance().Leader;
         }

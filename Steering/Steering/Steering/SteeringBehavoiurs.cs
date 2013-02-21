@@ -20,11 +20,16 @@ namespace Steering
         Vector3 wanderTarget;
         int flags;
         Sphere sphere;
+        Sphere wanderSphere;
         float maxForce = 10.0f;
         public enum CalculationMethods { WeightedTruncatedSum, WeightedTruncatedRunningSumWithPrioritisation, PrioritisedDithering };
         CalculationMethods calculationMethod;
 
         private Dictionary<behaviour_type, float> weights = new Dictionary<behaviour_type,float>();
+
+        float wanderRadius = 20.2f;
+        float wanderDistance = 50.0f;
+        float wanderJitter = 200.0f;
 
         public enum behaviour_type
         {
@@ -71,15 +76,19 @@ namespace Steering
             this.fighter = entity;
             calculationMethod = CalculationMethods.WeightedTruncatedRunningSumWithPrioritisation;
             sphere = new Sphere(0.2f);
+            wanderSphere = new Sphere(1);
             XNAGame.Instance().Children.Add(sphere);
+            XNAGame.Instance().Children.Add(wanderSphere);
+
             wanderTarget = new Vector3(randomClamped(), randomClamped(), randomClamped());
             wanderTarget.Normalize();
+            wanderTarget *= wanderRadius;
             
             weights.Add(behaviour_type.allignment, 1.0f);
             weights.Add(behaviour_type.cohesion, 2.0f);
             weights.Add(behaviour_type.obstacle_avoidance, 20.0f);
             weights.Add(behaviour_type.wall_avoidance, 20.0f);
-            weights.Add(behaviour_type.wander, 1.0f);
+            weights.Add(behaviour_type.wander, 0.5f);
             weights.Add(behaviour_type.seek, 1.0f);
             weights.Add(behaviour_type.flee, 1.0f);
             weights.Add(behaviour_type.arrive, 1.0f);
@@ -338,27 +347,22 @@ namespace Steering
 
         Vector3 wander()
         {
-
-            float wanderRadius = 5.2f;
-            float wanderDistance = 10.0f;
-            float wanderJitter = 40.0f;
-
             float jitterTimeSlice = wanderJitter * timeDelta;
 
-            wanderTarget += new Vector3(randomClamped() * jitterTimeSlice, randomClamped() * jitterTimeSlice, randomClamped() * jitterTimeSlice);
+            Vector3 toAdd = new Vector3(randomClamped(), randomClamped(), randomClamped()) * jitterTimeSlice;
+            wanderTarget += toAdd;
             wanderTarget.Normalize();
+            wanderTarget *= wanderRadius;
 
-            wanderTarget = wanderTarget * wanderRadius;
+            Vector3 worldTarget = Vector3.Transform(wanderTarget + (fighter.basis * wanderDistance), fighter.worldTransform);
 
-            Vector3 basis = fighter.basis;
-
-            Vector3 worldTarget = (basis * wanderDistance) + wanderTarget;
-
-            worldTarget = Vector3.Transform(worldTarget, fighter.worldTransform);
-
-            sphere.pos = worldTarget;
+            Vector3 cent = Vector3.Transform(fighter.basis * wanderDistance, fighter.worldTransform);
+            sphere.Radius = wanderRadius;
+            sphere.pos = cent;
+            wanderSphere.Radius = 1.0f;
+            wanderSphere.pos = worldTarget;
             return (worldTarget - fighter.pos);
-
+            
         }
 
         public Vector3 wall_avoidance()

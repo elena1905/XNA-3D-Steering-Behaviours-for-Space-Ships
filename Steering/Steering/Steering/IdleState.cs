@@ -35,6 +35,7 @@ namespace Steering
             fighter.Path.DrawPath = true;
             fighter.SteeringBehaviours.turnOffAll();
             fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.follow_path);
+            fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.obstacle_avoidance);
         }
         public override void Exit()
         {            

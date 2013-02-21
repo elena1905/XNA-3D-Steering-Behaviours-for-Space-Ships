@@ -44,6 +44,16 @@ namespace Steering
         public override void Draw(GameTime gameTime)
         {
             worldTransform = Matrix.CreateScale(radius) * Matrix.CreateTranslation(pos);
+
+            RasterizerState originalState = XNAGame.Instance().GraphicsDevice.RasterizerState;
+
+            RasterizerState rasterizerState = new RasterizerState();
+            rasterizerState.FillMode = FillMode.WireFrame;
+            XNAGame.Instance().GraphicsDevice.RasterizerState = rasterizerState;
+
+            // Do your wireframe drawing here...
+
+            
             // Draw the mesh
             if (model != null)
             {
@@ -53,12 +63,16 @@ namespace Steering
                     {
                         effect.EnableDefaultLighting();
                         effect.PreferPerPixelLighting = true;
-                        effect.World = worldTransform;
+                        effect.World = worldTransform;                       
                         effect.Projection = XNAGame.Instance().Camera.getProjection();
                         effect.View = XNAGame.Instance().Camera.getView();
                     }
                     mesh.Draw();
                 }
+            }
+            if (originalState != null)
+            {
+                XNAGame.Instance().GraphicsDevice.RasterizerState = originalState;
             }
         }
 

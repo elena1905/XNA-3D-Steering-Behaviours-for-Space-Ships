@@ -20,6 +20,10 @@ namespace Steering
             : base()
         {
             ModelName = "Ship1";
+
+            int[] a = new int[10];
+            a.Count();
+            Console.WriteLine(a.Length);
         }
 
         public override void Update(GameTime gameTime)

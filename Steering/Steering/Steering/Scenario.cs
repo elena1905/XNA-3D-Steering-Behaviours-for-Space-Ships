@@ -52,6 +52,15 @@ namespace Steering
             Camera camera = XNAGame.Instance().Camera;
             camera.pos = new Vector3(0.0f, 60.0f, 100.0f);
 
+            Obstacle o = new Obstacle(4);
+            o.pos = new Vector3(0, 50, -10);
+            children.Add(o);
+
+            o = new Obstacle(4);
+            o.pos = new Vector3(50, 0, -90) + aiFighter.pos;
+            children.Add(o);
+
+
         }
 
         public static void setUpPursuit()
@@ -103,6 +112,8 @@ namespace Steering
             Ground ground = new Ground();
             children.Add(ground);
             XNAGame.Instance().Ground = ground;
+
+            XNAGame.Instance().Camera.pos = new Vector3(10, 120, 50);            
       
         }
 
