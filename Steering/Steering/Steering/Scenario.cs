@@ -46,11 +46,12 @@ namespace Steering
 
             float range = bigFighter.SteeringBehaviours.Range;
             Fighter fighter = null; 
-            for (int i = 0; i < 200; i++)
+            for (int i = 0; i < 210; i++)
             {
                 Vector3 pos = randomPosition(range);
                 
                 fighter = new EliteFighter();
+                fighter.ModelName = "ferdelance";
                 fighter.pos = pos;
                 fighter.Target = bigFighter;
                 fighter.SteeringBehaviours.turnOffAll();
