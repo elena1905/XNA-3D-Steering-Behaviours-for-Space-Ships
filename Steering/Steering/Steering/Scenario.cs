@@ -26,12 +26,13 @@ namespace Steering
             return pos;
         }
 
-        public static void setUpEliteDemo()
+        public static void setUpFlockingDemo()
         {
+            Params.Load("flocking.properties");
             List<Entity> children = XNAGame.Instance().Children;
-            //Ground ground = new Ground();
-            //children.Add(ground);
-            //XNAGame.Instance().Ground = ground;
+            Ground ground = new Ground();
+            children.Add(ground);
+            XNAGame.Instance().Ground = ground;
             
             
 
@@ -44,9 +45,9 @@ namespace Steering
             bigFighter.scale = 10.0f;
             children.Add(bigFighter);        
 
-            float range = bigFighter.SteeringBehaviours.Range;
-            Fighter fighter = null; 
-            for (int i = 0; i < 210; i++)
+            float range = Params.GetFloat("world_range");
+            Fighter fighter = null;
+            for (int i = 0; i < Params.GetFloat("num_boids"); i++)
             {
                 Vector3 pos = randomPosition(range);
                 
@@ -57,11 +58,12 @@ namespace Steering
                 fighter.SteeringBehaviours.turnOffAll();
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.separation);
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.cohesion);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.allignment);
+                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.alignment);
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wander);
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.evade);
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.sphere_constrain);
                 fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.obstacle_avoidance);
+                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wall_avoidance);
                 children.Add(fighter);                
             }
 

@@ -15,31 +15,16 @@ using Microsoft.Xna.Framework.Storage;
 namespace Steering
 {
     class SteeringBehaviours
-    {
-        private float range = 300;
-
-        public float Range
-        {
-            get { return range; }
-            set { range = value; }
-        }
+    {        
         Fighter fighter;
         Vector3 wanderTarget;
         Vector3 randomWalkTarget;
         int flags;
         Sphere sphere;
         Sphere wanderSphere;
-        float maxForce = 400.0f;
-        float tagRange = 50;
-        float steeringWeightTweaker = 200.0f;
+    
         public enum CalculationMethods { WeightedTruncatedSum, WeightedTruncatedRunningSumWithPrioritisation, PrioritisedDithering };
         CalculationMethods calculationMethod;
-
-        private Dictionary<behaviour_type, float> weights = new Dictionary<behaviour_type,float>();
-
-        float wanderRadius = 1.2f;
-        float wanderDistance = 2.0f;
-        float wanderJitter = 80.0f;
 
         private int TagNeighbours(float inRange)
         {
@@ -86,7 +71,7 @@ namespace Steering
             return Vector3.Normalize(steeringForce);
         }
 
-        public Vector3 allignment()
+        public Vector3 alignment()
         {
             List<Entity> entities = XNAGame.Instance().Children;
             Vector3 steeringForce = Vector3.Zero;
@@ -145,7 +130,7 @@ namespace Steering
             wander = 0x00010,
             cohesion = 0x00020,
             separation = 0x00040,
-            allignment = 0x00080,
+            alignment = 0x00080,
             obstacle_avoidance = 0x00100,
             wall_avoidance = 0x00200,
             follow_path = 0x00400,
@@ -191,31 +176,8 @@ namespace Steering
 
             wanderTarget = new Vector3(RandomClamped(), RandomClamped(), RandomClamped());
             wanderTarget.Normalize();
-            wanderTarget *= wanderRadius;
+            wanderTarget *= Params.GetFloat("wander_radius");
             
-            weights.Add(behaviour_type.allignment, 1.0f);
-            weights.Add(behaviour_type.cohesion, 2.0f);
-            weights.Add(behaviour_type.obstacle_avoidance, 20.0f);
-            weights.Add(behaviour_type.wall_avoidance, 20.0f);
-            weights.Add(behaviour_type.sphere_constrain, 1.0f);
-            weights.Add(behaviour_type.wander, 1.00f);
-            weights.Add(behaviour_type.seek, 1.0f);
-            weights.Add(behaviour_type.flee, 1.0f);
-            weights.Add(behaviour_type.arrive, 1.0f);
-            weights.Add(behaviour_type.pursuit, 1.0f);
-            weights.Add(behaviour_type.offset_pursuit, 1.0f);
-            weights.Add(behaviour_type.interpose, 1.0f);
-            weights.Add(behaviour_type.hide, 1.0f);
-            weights.Add(behaviour_type.evade, 0.01f);
-            weights.Add(behaviour_type.follow_path, 1.0f);
-            weights.Add(behaviour_type.separation, 1.0f);
-            weights.Add(behaviour_type.random_walk, 1.0f);
-
-            List<behaviour_type> keys = weights.Keys.ToList<behaviour_type>();
-            for (int i = 0;  i < keys.Count; i++)
-            {
-                weights[keys[i]] = weights[keys[i]] * steeringWeightTweaker;
-            }
         }
 
         Vector3  evade()
@@ -454,9 +416,9 @@ namespace Steering
             float dist = (fighter.pos - randomWalkTarget).Length();
             if (dist < 50)
             {
-                randomWalkTarget.X = RandomClamped() * Range;
-                randomWalkTarget.Y = RandomClamped() * Range;
-                randomWalkTarget.Z = RandomClamped() * Range;
+                randomWalkTarget.X = RandomClamped() * Params.GetFloat("world_range");
+                randomWalkTarget.Y = RandomClamped() * Params.GetFloat("world_range");
+                randomWalkTarget.Z = RandomClamped() * Params.GetFloat("world_range");
             }
             return seek(randomWalkTarget);
         }
@@ -481,17 +443,17 @@ namespace Steering
 
         Vector3 wander()
         {
-            float jitterTimeSlice = wanderJitter * timeDelta;
+            float jitterTimeSlice = Params.GetFloat("wander_jitter") * timeDelta;
 
             Vector3 toAdd = new Vector3(RandomClamped(), RandomClamped(), RandomClamped()) * jitterTimeSlice;
             wanderTarget += toAdd;
             wanderTarget.Normalize();
-            wanderTarget *= wanderRadius;
+            wanderTarget *= Params.GetFloat("wander_radius");
 
-            Vector3 worldTarget = Vector3.Transform(wanderTarget + (fighter.basis * wanderDistance), fighter.worldTransform);
+            Vector3 worldTarget = Vector3.Transform(wanderTarget + (fighter.basis * Params.GetFloat("wander_distance")), fighter.worldTransform);
 
-            Vector3 cent = Vector3.Transform(fighter.basis * wanderDistance, fighter.worldTransform);
-            sphere.Radius = wanderRadius;
+            Vector3 cent = Vector3.Transform(fighter.basis * Params.GetFloat("wander_distance"), fighter.worldTransform);
+            sphere.Radius = Params.GetFloat("wander_radius");
             sphere.pos = cent;
             wanderSphere.Radius = 1.0f;
             wanderSphere.pos = worldTarget;
@@ -600,7 +562,7 @@ namespace Steering
             
             if (isOn(behaviour_type.obstacle_avoidance))
             {
-                force = obstacleAvoidance() * weights[behaviour_type.obstacle_avoidance];
+                force = obstacleAvoidance() * Params.GetWeight("obstacle_avoidance_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -608,7 +570,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.wall_avoidance))
             {
-                force = wall_avoidance() * weights[behaviour_type.wall_avoidance];
+                force = wall_avoidance() * Params.GetWeight("wall_avoidance_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -616,7 +578,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.sphere_constrain))
             {
-                force = sphereConstrain(Range) * weights[behaviour_type.sphere_constrain];
+                force = sphereConstrain(Params.GetFloat("world_range")) * Params.GetWeight("sphere_constrain_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -624,28 +586,28 @@ namespace Steering
             }
             if (isOn(behaviour_type.evade))
             {
-                force = evade() * weights[behaviour_type.evade];
+                force = evade() * Params.GetWeight("evade_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
                 }
             }
             int tagged = 0;
-            if (isOn(behaviour_type.separation) || isOn(behaviour_type.cohesion) || isOn(behaviour_type.allignment))
+            if (isOn(behaviour_type.separation) || isOn(behaviour_type.cohesion) || isOn(behaviour_type.alignment))
             {
-                tagged = TagNeighbours(tagRange);
+                tagged = TagNeighbours(Params.GetFloat("tag_range"));
             }
             if (isOn(behaviour_type.separation) && (tagged > 0) )
             {
-                force = separation() * weights[behaviour_type.separation];
+                force = separation() * Params.GetWeight("separation_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
                 }
             }
-            if (isOn(behaviour_type.allignment) && (tagged > 0))
+            if (isOn(behaviour_type.alignment) && (tagged > 0))
             {
-                force = allignment() * weights[behaviour_type.allignment];
+                force = alignment() * Params.GetWeight("alignment_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -653,7 +615,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.cohesion) && (tagged > 0))
             {
-                force = cohesion() * weights[behaviour_type.cohesion];
+                force = cohesion() * Params.GetWeight("cohesion_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -661,7 +623,7 @@ namespace Steering
             }            
             if (isOn(behaviour_type.seek))
             {
-                force = seek(fighter.targetPos) * weights[behaviour_type.seek];
+                force = seek(fighter.targetPos) * Params.GetWeight("seek_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -669,7 +631,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.arrive))
             {
-                force = arrive(fighter.targetPos) * weights[behaviour_type.arrive];
+                force = arrive(fighter.targetPos) * Params.GetWeight("arrive_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -677,7 +639,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.wander))
             {
-                force = wander() * weights[behaviour_type.wander];
+                force = wander() * Params.GetWeight("wander_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -685,7 +647,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.pursuit))
             {
-                force = pursue() * weights[behaviour_type.pursuit];
+                force = pursue() * Params.GetWeight("pursuit_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -693,7 +655,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.offset_pursuit))
             {
-                force = offsetPursuit(fighter.offset) * weights[behaviour_type.offset_pursuit];
+                force = offsetPursuit(fighter.offset) * Params.GetWeight("offset_pursuit_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -701,7 +663,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.follow_path))
             {
-                force = followPath() * weights[behaviour_type.follow_path];
+                force = followPath() * Params.GetWeight("follow_path_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -709,7 +671,7 @@ namespace Steering
             }
             if (isOn(behaviour_type.random_walk))
             {
-                force = randomWalk() * weights[behaviour_type.random_walk];
+                force = randomWalk() * Params.GetWeight("random_walk_weight");
                 if (!accumulateForce(ref steeringForce, force))
                 {
                     return steeringForce;
@@ -741,7 +703,7 @@ namespace Steering
         {
             float soFar = runningTotal.Length();
 
-            float remaining = maxForce - soFar;
+            float remaining = Params.GetFloat("max_force") - soFar;
             if (remaining <= 0)
             {
                 return false;

@@ -85,7 +85,7 @@ namespace Steering
             graphics.PreferMultiSampling = true;
             graphics.SynchronizeWithVerticalRetrace = true;
             graphics.ApplyChanges();
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             Content.RootDirectory = "Content";
         }
         
@@ -103,7 +103,7 @@ namespace Steering
             int midY = GraphicsDeviceManager.DefaultBackBufferWidth / 2;
             Mouse.SetPosition(midX, midY);
             children.Add(camera);
-            Scenario.setUpEliteDemo();
+            Scenario.setUpFlockingDemo();
             base.Initialize();
         }
 
