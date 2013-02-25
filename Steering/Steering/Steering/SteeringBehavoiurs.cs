@@ -30,66 +30,21 @@ namespace Steering
         {
             List<Entity> entities = XNAGame.Instance().Children;
             int tagged = 0;
-            foreach (Entity entity in entities)
-            {
-                if ((entity is Fighter) && (entity != fighter))
-                {
-                    Fighter neighbour = (Fighter)entity;
-                    if ((fighter.pos - neighbour.pos).Length() < inRange)
-                    {
-                        neighbour.Tagged = true;
-                        tagged++;
-                    }
-                    else
-                    {
-                        neighbour.Tagged = false;
-                    }
-                }
-            }
+            
             return tagged;
         }
 
         public Vector3 cohesion()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;
-            Vector3 centreOfMass = Vector3.Zero;
-            int tagged = 0;
-            foreach (Entity entity in entities)
-            {
-                if (entity.Tagged && entity != fighter)
-                {
-                    centreOfMass += entity.pos;
-                    tagged++;
-                }
-            }
-            if (tagged > 0)
-            {
-                centreOfMass /= (float) tagged;
-                steeringForce = seek(centreOfMass);
-            }
+            Vector3 steeringForce = Vector3.Zero;            
             return Vector3.Normalize(steeringForce);
         }
 
         public Vector3 alignment()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;
-            int tagged = 0;
-            foreach (Entity entity in entities)
-            {
-                if (entity.Tagged && entity != fighter)
-                {
-                    steeringForce += entity.look;
-                    tagged++;
-                }
-            }
-
-            if (tagged > 0)
-            {
-                steeringForce /= (float) tagged;
-                steeringForce -= fighter.look;
-            }
+            Vector3 steeringForce = Vector3.Zero;            
             return steeringForce;
                 
         }
@@ -98,10 +53,7 @@ namespace Steering
         {
             float distance = fighter.pos.Length();
             Vector3 steeringForce = Vector3.Zero;
-            if (distance > radius)
-            {
-                steeringForce = Vector3.Normalize(fighter.pos) * (radius - distance);
-            }
+            
             return steeringForce;
         }
 
@@ -109,15 +61,7 @@ namespace Steering
         public Vector3 separation()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;
-            foreach (Entity entity in entities)
-            {
-                if (entity.Tagged && entity != fighter)
-                {
-                    Vector3 toEntity = fighter.pos - entity.pos;
-                    steeringForce += (Vector3.Normalize(toEntity) / toEntity.Length());
-                }
-            }
+            Vector3 steeringForce = Vector3.Zero;            
             return steeringForce;
         }
   

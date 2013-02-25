@@ -30,42 +30,14 @@ namespace Steering
         {
             Params.Load("flocking.properties");
             List<Entity> children = XNAGame.Instance().Children;
-            Ground ground = new Ground();
-            children.Add(ground);
-            XNAGame.Instance().Ground = ground;
             
+            // Create an EliteFighter instance to be the pursuer
             
-
-            Fighter bigFighter = new EliteFighter();
-            bigFighter.ModelName = "python";
-            bigFighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.obstacle_avoidance);
-            bigFighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wander);
-            bigFighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.pursuit);
-            bigFighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.sphere_constrain);
-            bigFighter.scale = 10.0f;
-            children.Add(bigFighter);        
-
             float range = Params.GetFloat("world_range");
             Fighter fighter = null;
-            for (int i = 0; i < Params.GetFloat("num_boids"); i++)
-            {
-                Vector3 pos = randomPosition(range);
-                
-                fighter = new EliteFighter();
-                fighter.ModelName = "ferdelance";
-                fighter.pos = pos;
-                fighter.Target = bigFighter;
-                fighter.SteeringBehaviours.turnOffAll();
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.separation);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.cohesion);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.alignment);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wander);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.evade);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.sphere_constrain);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.obstacle_avoidance);
-                fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wall_avoidance);
-                children.Add(fighter);                
-            }
+            // Create Params.GetFloat("num_boids") boids and turn on the appropriate steering behaviours..
+            // use Vector3 pos = randomPosition(range); to generate random positions
+            
 
             int numObstacles = 5;
             float dist = (range * 2) / numObstacles;
@@ -80,21 +52,10 @@ namespace Steering
                     children.Add(o);
                 }
             }
-
-            bigFighter.Target = fighter;
-
-            Fighter camFighter = new EliteFighter();
-            Vector3 offset = new Vector3(0, 0, 10);
-            fighter.ModelName = "cobramk3";
-            camFighter.pos = fighter.pos + offset;
-            camFighter.offset = offset;
-            camFighter.Leader = fighter;
-            camFighter.SteeringBehaviours.turnOffAll();
-            camFighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.offset_pursuit);
-            fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.sphere_constrain);
-            XNAGame.Instance().Children.Add(camFighter);
-    
-            XNAGame.Instance().CamFighter = camFighter;
+            
+            // Create a camera fighter
+            // Give it a "Leader" to follow and turn on offset pursuit
+            //XNAGame.Instance().CamFighter = XXX?
             Camera camera = XNAGame.Instance().Camera;
             camera.pos = new Vector3(0.0f, 60.0f, 200.0f);
         }
