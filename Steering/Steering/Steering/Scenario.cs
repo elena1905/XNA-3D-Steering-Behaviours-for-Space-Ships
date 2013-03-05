@@ -34,10 +34,33 @@ namespace Steering
             // Create an EliteFighter instance to be the pursuer
             
             float range = Params.GetFloat("world_range");
-            Fighter fighter = null;
-            // Create Params.GetFloat("num_boids") boids and turn on the appropriate steering behaviours..
-            // use Vector3 pos = randomPosition(range); to generate random positions
+
+            Fighter fighter = new Fighter();
+            fighter.ModelName = "ship2";
+            //fighter.pos = new Vector3(10.0f, 10.0f, 10.0f);
+            //fighter.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.pursuit);
             
+
+            // Create Params.GetFloat("num_boids") boids and turn on the appropriate steering behaviours..
+            float boids = Params.GetFloat("num_boids");
+
+            for (int i = 0; i < boids;  i++)
+            {
+                Fighter boid = new Fighter();
+                boid.ModelName = "fighter";
+                boid.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.alignment);
+                boid.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.cohesion);
+                boid.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.wander);
+                boid.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.sphere_constrain);
+                boid.SteeringBehaviours.turnOn(SteeringBehaviours.behaviour_type.separation);
+
+                // use Vector3 pos = randomPosition(range); to generate random positions
+                Vector3 pos = randomPosition(range);
+                boid.pos = pos;
+                //fighter.targetPos = boid.pos + new Vector3(-50, 0, -80);
+                children.Add(boid);
+            }
+            //children.Add(fighter);
 
             int numObstacles = 5;
             float dist = (range * 2) / numObstacles;

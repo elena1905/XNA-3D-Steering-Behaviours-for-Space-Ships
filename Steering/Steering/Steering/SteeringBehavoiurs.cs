@@ -30,6 +30,23 @@ namespace Steering
         {
             List<Entity> entities = XNAGame.Instance().Children;
             int tagged = 0;
+
+            // Tag all fighters in range
+            foreach(Entity child in entities)
+            {
+                child.Tagged = false;
+
+                if (child is Fighter)
+                {
+                    float distance = (fighter.pos - child.pos).Length();
+
+                    if (distance <= inRange)
+                    {
+                        tagged++;
+                        child.Tagged = true;
+                    }
+                }
+            }
             
             return tagged;
         }
@@ -37,23 +54,74 @@ namespace Steering
         public Vector3 cohesion()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;            
+            Vector3 steeringForce = Vector3.Zero;
+
+            //int neighbourCount = TagNeighbours(15.0f);
+            int neighbourCount = 0;
+            Vector3 centreOfMass = Vector3.Zero;
+
+            foreach (Entity child in entities)
+            {
+                if ((child is Fighter) && child.Tagged)
+                {
+                    centreOfMass += child.pos;
+                    neighbourCount++;
+                }
+            }
+
+            if (0 != neighbourCount)
+            {
+                centreOfMass /= neighbourCount;
+                steeringForce = seek(centreOfMass);
+            }
+
             return Vector3.Normalize(steeringForce);
         }
 
         public Vector3 alignment()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;            
+            Vector3 steeringForce = Vector3.Zero;
+
+            //int neighbourCount = TagNeighbours(15.0f);
+            int neighbourCount = 0;
+            Vector3 aveLook = Vector3.Zero;
+
+            foreach (Entity child in entities)
+            {
+                if ((child is Fighter) && child.Tagged)
+                {
+                    aveLook += child.look;
+                    neighbourCount++;
+                }
+            }
+
+            if (0 != neighbourCount)
+            {
+                aveLook /= neighbourCount;
+                steeringForce = aveLook - fighter.look;
+            }
+
             return steeringForce;
-                
         }
 
         public Vector3 sphereConstrain(float radius)
         {
             float distance = fighter.pos.Length();
             Vector3 steeringForce = Vector3.Zero;
-            
+
+            // Calculate normalized and negated pos
+            Vector3 targetPos = Vector3.Zero;
+            if (distance > radius)
+            {
+                targetPos = -fighter.pos;
+                targetPos.Normalize();
+
+                float sizeOfForce = distance - radius;
+
+                steeringForce = sizeOfForce * targetPos;
+            }
+
             return steeringForce;
         }
 
@@ -61,7 +129,22 @@ namespace Steering
         public Vector3 separation()
         {
             List<Entity> entities = XNAGame.Instance().Children;
-            Vector3 steeringForce = Vector3.Zero;            
+            Vector3 steeringForce = Vector3.Zero;
+
+            Vector3 toTarget = Vector3.Zero;
+
+            foreach (Entity child in entities)
+            {
+                if ((child is Fighter) && child.Tagged && (child != fighter))
+                {
+                    toTarget = fighter.pos - child.pos;
+                    float length = toTarget.Length();
+                    toTarget.Normalize();
+
+                    steeringForce += toTarget / length;
+                }
+            }
+
             return steeringForce;
         }
   
